@@ -113,6 +113,33 @@ public class LRUCache<K, V> {
     }
 
     /**
+     * Method for returning the current size of cache
+     *
+     * @return Current size of the Cache
+     */
+    public int size() {
+        return cache.size();
+    }
+
+    /**
+     * Method for clearing all the cache
+     */
+    public void clear() {
+        cache.clear();
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    /**
+     * Method to Evict Least Recently Used Cache
+     */
+    public void evict() {
+        if (!cache.isEmpty()) {
+            evictLRU();
+        }
+    }
+
+    /**
      * Internal method to remove a node, or an entry from cache
      *
      * @param node - Node to be removed
@@ -136,6 +163,15 @@ public class LRUCache<K, V> {
         head.next.prev = node;
         node.prev = head;
         head.next = node;
+    }
+
+    /**
+     * Internal method to evict Least Recently Used Entry
+     */
+    private void evictLRU() {
+        Node<K, V> last = tail.prev;
+        removeNode(last);
+        cache.remove(last.key);
     }
 
 }
