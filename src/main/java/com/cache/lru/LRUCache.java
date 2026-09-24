@@ -140,6 +140,28 @@ public class LRUCache<K, V> {
     }
 
     /**
+     * Method for returning Cache entries as string
+     *
+     * @return - Cache entries
+     */
+    public String toString() {
+
+        if (head.next == tail) {
+            return "EMPTY";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        Node<K, V> node = head.next;
+
+        while (node != tail) {
+            sb.append(node.key).append(" -> ").append(node.value).append("\n");
+            node = node.next;
+        }
+
+        return sb.toString();
+    }
+
+    /**
      * Internal method to remove a node, or an entry from cache
      *
      * @param node - Node to be removed
