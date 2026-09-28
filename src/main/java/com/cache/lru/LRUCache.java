@@ -144,6 +144,7 @@ public class LRUCache<K, V> {
      *
      * @return - Cache entries
      */
+    @Override
     public String toString() {
 
         if (head.next == tail) {
@@ -153,10 +154,12 @@ public class LRUCache<K, V> {
         StringBuilder sb = new StringBuilder();
         Node<K, V> node = head.next;
 
-        while (node != tail) {
+        while (node.next != tail) {
             sb.append(node.key).append(" -> ").append(node.value).append("\n");
             node = node.next;
         }
+
+        sb.append(node.key).append(" -> ").append(node.value);
 
         return sb.toString();
     }
