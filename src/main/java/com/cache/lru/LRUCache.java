@@ -113,12 +113,30 @@ public class LRUCache<K, V> {
     }
 
     /**
+     * Method for adding list of key value pairs in cache
+     *
+     * @param values - key value pairs to be added
+     */
+    public void putAll(Map<K, V> values) {
+        values.forEach(this::put);
+    }
+
+    /**
      * Method for returning the current size of cache
      *
      * @return Current size of the Cache
      */
     public int size() {
         return cache.size();
+    }
+
+    /**
+     * Method for checking if cache is empty
+     *
+     * @return - true if cache is empty or else false
+     */
+    public boolean isEmpty() {
+        return cache.isEmpty();
     }
 
     /**

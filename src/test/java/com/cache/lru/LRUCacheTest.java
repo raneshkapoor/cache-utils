@@ -3,6 +3,9 @@ package com.cache.lru;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LRUCacheTest {
 
     @Test
@@ -110,6 +113,30 @@ public class LRUCacheTest {
         LRUCache<Integer, String> lruCache = new LRUCache<>(5);
 
         Assertions.assertEquals("EMPTY", lruCache.toString());
+    }
+
+    @Test
+    public void testLRUCache_isEmpty() {
+
+        LRUCache<Integer, String> lruCache = new LRUCache<>(5);
+
+        Assertions.assertTrue(lruCache.isEmpty());
+    }
+
+    @Test
+    public void testLRUCache_putAll() {
+
+        LRUCache<Integer, String> lruCache = new LRUCache<>(5);
+
+        Map<Integer, String> map = new HashMap<>();
+
+        map.put(1, "ABC");
+        map.put(2, "DEF");
+        map.put(3, "GHI");
+
+        lruCache.putAll(map);
+
+        Assertions.assertEquals(3, lruCache.size());
     }
 
 }
