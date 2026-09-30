@@ -1,5 +1,7 @@
 package com.cache.lru;
 
+import com.cache.Cache;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ import java.util.Map;
  * 1. HashMap - for O(1) lookups
  * 2. DoublyLinkedList - for O(1) insertion/deletion and order
  */
-public class LRUCache<K, V> {
+public class LRUCache<K, V> implements Cache<K, V> {
 
     /**
      * Internal private class for each Node
@@ -63,6 +65,7 @@ public class LRUCache<K, V> {
      * @param key - key for which cache value is required
      * @return - Value of type V for the key, or null if key not exists
      */
+    @Override
     public V get(K key) {
 
         if (!cache.containsKey(key)) {
@@ -86,6 +89,7 @@ public class LRUCache<K, V> {
      * @param key - key for the value
      * @param value - value to be put in cache
      */
+    @Override
     public void put(K key, V value) {
 
         // If cache already exists for given key, update the value and move to Most Recently Used
@@ -126,6 +130,7 @@ public class LRUCache<K, V> {
      *
      * @return Current size of the Cache
      */
+    @Override
     public int size() {
         return cache.size();
     }
